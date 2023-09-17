@@ -26,11 +26,8 @@ namespace Controllers
         public async Task<IActionResult> Index()
         {
             OrdersRepository ordersRepository = new OrdersRepository();
-
-            var superStoreContext = _context.Orders.Include(o => o.Customer);
             var results = ordersRepository.GetAll();
 
-            //return View(await superStoreContext.ToListAsync());
             return View(results.ToList());
 
         }
