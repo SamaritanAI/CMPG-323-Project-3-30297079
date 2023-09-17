@@ -8,8 +8,8 @@ namespace EcoPower_Logistics.Repository
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
         void Add(T entity);
-        void Delete(int id);
-        void Remove(T entity);
+        void AddRange(IEnumerable<T> entities);
+        void Remove(int id);
         void RemoveRange(IEnumerable<T> entities);
 
     }

@@ -1,12 +1,20 @@
-﻿using System.Linq.Expressions;
+﻿using Data;
+using System.Linq.Expressions;
 
 namespace EcoPower_Logistics.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        protected readonly SuperStoreContext _context;
+
+        public GenericRepository(SuperStoreContext context)
+        {
+            _context = context;
+        }
+
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Add(entity);
         }
 
         public void Delete(int id)
@@ -29,12 +37,18 @@ namespace EcoPower_Logistics.Repository
             throw new NotImplementedException();
         }
 
-        public void Remove(T entity)
+        public void RemoveRange(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveRange(IEnumerable<T> entities)
+        void IGenericRepository<T>.AddRange(IEnumerable<T> entities)
+        {
+            //_context.Set<T>().Add(entities);
+            _context.Set<T>().Add((T)entities);
+        }
+
+        void IGenericRepository<T>.Remove(int id)
         {
             throw new NotImplementedException();
         }
