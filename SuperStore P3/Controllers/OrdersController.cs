@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Data;
+using EcoPower_Logistics.Repository;
 
 namespace Controllers
 {
@@ -24,8 +25,14 @@ namespace Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
+            OrdersRepository ordersRepository = new OrdersRepository();
+
             var superStoreContext = _context.Orders.Include(o => o.Customer);
-            return View(await superStoreContext.ToListAsync());
+            var results = ordersRepository.GetAll();
+
+            //return View(await superStoreContext.ToListAsync());
+            return View(results.ToList());
+
         }
 
         // GET: Orders/Details/5

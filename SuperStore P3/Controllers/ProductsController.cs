@@ -29,9 +29,7 @@ namespace Controllers
 
             var results = productsRepository.GetAll(); 
 
-            return _context.Products != null ?
-                        View(await _context.Products.ToListAsync()) :
-                        Problem("Entity set 'SuperStoreContext.Products'  is null.");
+            return View(results);
         }
 
         // GET: Products/Details/5
