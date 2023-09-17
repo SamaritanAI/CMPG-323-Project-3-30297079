@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Data;
 using Models;
+using EcoPower_Logistics.Repository;
 
 namespace Controllers
 {
@@ -24,6 +25,10 @@ namespace Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            ProductsRepository productsRepository = new ProductsRepository();
+
+            var results = productsRepository.GetAll(); 
+
             return _context.Products != null ?
                         View(await _context.Products.ToListAsync()) :
                         Problem("Entity set 'SuperStoreContext.Products'  is null.");
