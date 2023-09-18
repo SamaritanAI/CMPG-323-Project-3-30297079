@@ -44,8 +44,7 @@ namespace EcoPower_Logistics.Repository
 
         void IGenericRepository<T>.AddRange(IEnumerable<T> entities)
         {
-            //_context.Set<T>().Add(entities);
-            _context.Set<T>().Add((T)entities);
+            _context.Set<T>().AddRange(entities);
         }
 
         void IGenericRepository<T>.Remove(int id)
