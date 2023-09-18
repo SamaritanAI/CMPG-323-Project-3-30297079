@@ -17,39 +17,41 @@ namespace EcoPower_Logistics.Repository
             _context.Set<T>().Add(entity);
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Where(expression);
         }
 
-        public T Get(int id)
+        public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Find(id);
+
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().ToList();
         }
 
         public void RemoveRange(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().RemoveRange(entities);
         }
 
         void IGenericRepository<T>.AddRange(IEnumerable<T> entities)
         {
             _context.Set<T>().AddRange(entities);
         }
-
-        void IGenericRepository<T>.Remove(int id)
+        
+        void IGenericRepository<T>.Remove(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(entity);
+        }
+
+        public void Remove(T entity)
+        {
+            _context.Set<T>().Remove(entity);
         }
     }
 }
