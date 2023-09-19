@@ -23,11 +23,11 @@ namespace Controllers
         }
 
         // GET: OrderDetails
-        public async Task<IActionResult> Index()
+        public Task<IActionResult> Index()
         {
-            OrderDetailsRepository rep = new OrderDetailsRepository();
+            OrderDetailsRepository rep = new ();
             var results = rep.GetAll();
-            return View(results);
+            return Task.FromResult<IActionResult>(View(results));
         }
 
         // GET: OrderDetails/Details/5
